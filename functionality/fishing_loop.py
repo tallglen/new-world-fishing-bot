@@ -61,3 +61,7 @@ def call_appropriate_fishing_action():
         info("Cast fishing rod")
         cast()
         return '5'
+    elif result_from_model == '6': #6 - model matched the success icon (click)
+        info("Success state spotted, click to animation cancel")
+        press_on_success()
+        return '6'
