@@ -15,6 +15,7 @@ CONFIG_PATH = path.join(ROOT_DIR, 'resources\config.yml')
 WAITING_FOR_FISH = path.join(ROOT_DIR, 'resources\\waiting_for_fish.jpg')
 FISH_NOTICED = path.join(ROOT_DIR, 'resources\\fish_noticed.jpg')
 ICON_PATH = path.join(ROOT_DIR, 'resources\\icon.ico')
+SUCCESS_NOTICED = path.join(ROOT_DIR, 'resources\\success.jpg')
 
 continue_fishing = False
 last_repair_time = int(time())
