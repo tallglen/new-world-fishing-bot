@@ -131,3 +131,8 @@ def press_equip_bait(timeout):
     sleep(timeout)
     # waiting for animation to finish
     sleep(1)
+    
+def press_on_success():
+    sleep(0.1)
+    click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
+    sleep(0.1)    
