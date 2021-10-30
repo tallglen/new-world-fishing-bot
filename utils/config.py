@@ -85,8 +85,7 @@ dict = {
     'colors':{
       'green': (config['colors']['green']['r'], config['colors']['green']['g'], config['colors']['green']['b']),
       'brown': (config['colors']['brown']['r'], config['colors']['brown']['g'], config['colors']['brown']['b']),
-      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b']),
-      'success': (config['colors']['success']['r'], config['colors']['success']['g'], config['colors']['success']['b'])
+      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b'])
     },
     'resolution':{
       'x': config['resolution']['x'],
@@ -187,11 +186,6 @@ def save_data():
         'r': dict['colors']['red'][0],
         'g': dict['colors']['red'][1],
         'b': dict['colors']['red'][2]
-      },
-      'success': {
-        'r': dict['colors']['success'][0],
-        'g': dict['colors']['success'][1],
-        'b': dict['colors']['success'][2]
       }
     },
     'resolution':{
