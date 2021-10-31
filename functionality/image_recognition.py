@@ -2,11 +2,12 @@ from utils.config import dict
 from numpy import array
 import cv2 as cv
 from PIL import ImageGrab
-from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED, SUCCESS_NOTICED
+from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED, SUCCESS_NOTICED, READY_TO_CAST_NOTICED
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
 SUCCESS = cv.imread(SUCCESS_NOTICED)
+READY_TO_CAST = cv.imread(READY_TO_CAST_NOTICED)
 
 REEL_COLOR = dict['colors']['green']
 WAIT_COLOR_BROWN = dict['colors']['brown']
@@ -17,6 +18,9 @@ def image_recognition_result(x, y, width, height):
     region=(x, y, x + width, y + height)
     img = ImageGrab.grab(bbox = region)
     img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
+    res = cv.matchTemplate(img_cv, READY_TO_CAST, eval('cv.TM_CCOEFF_NORMED'))
+    if((res >= 0.7).any()):
+        return '7'
     res = cv.matchTemplate(img_cv, SUCCESS, eval('cv.TM_CCOEFF_NORMED'))
     if((res >= 0.7).any()):
         return '6'
@@ -36,6 +40,8 @@ def image_recognition_result(x, y, width, height):
                 return '3'
             if pixel_match(color, WAIT_COLOR_RED):
                 return '4'
+            #if pixel_match(color, SUCCESS_COLOR):
+            #    return '6'
     return '5'
 
 def pixel_match(color, matcher):

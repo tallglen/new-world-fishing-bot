@@ -16,6 +16,7 @@ WAITING_FOR_FISH = path.join(ROOT_DIR, 'resources\\waiting_for_fish.jpg')
 FISH_NOTICED = path.join(ROOT_DIR, 'resources\\fish_noticed.jpg')
 ICON_PATH = path.join(ROOT_DIR, 'resources\\icon.ico')
 SUCCESS_NOTICED = path.join(ROOT_DIR, 'resources\\success.jpg')
+READY_TO_CAST_NOTICED = path.join(ROOT_DIR, 'resources\\F3.jpg')
 
 continue_fishing = False
 last_repair_time = int(time())

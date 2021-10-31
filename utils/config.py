@@ -1,7 +1,7 @@
 from yaml import safe_load, dump
 from tkinter import IntVar
 from utils.global_variables import CONFIG_PATH
-from numpy import random
+import random
 
 
 config = safe_load(open(CONFIG_PATH))
@@ -57,10 +57,6 @@ dict = {
         'confirm': {
           'min': config['repairing']['timeouts']['confirm']['min'],
           'max': config['repairing']['timeouts']['confirm']['max']
-        },
-        'move_around': {
-          'min': config['repairing']['timeouts']['move_around']['min'],
-          'max': config['repairing']['timeouts']['move_around']['max']
         }
       }
     },
@@ -85,8 +81,7 @@ dict = {
     'colors':{
       'green': (config['colors']['green']['r'], config['colors']['green']['g'], config['colors']['green']['b']),
       'brown': (config['colors']['brown']['r'], config['colors']['brown']['g'], config['colors']['brown']['b']),
-      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b'])
-    },
+      'red': (config['colors']['red']['r'], config['colors']['red']['g'], config['colors']['red']['b'])    },
     'resolution':{
       'x': config['resolution']['x'],
       'y': config['resolution']['y']
@@ -146,10 +141,6 @@ def save_data():
         'confirm': {
           'min': dict['repairing']['timeouts']['confirm']['min'],
           'max': dict['repairing']['timeouts']['confirm']['max']
-        },
-        'move_around': {
-          'min': dict['repairing']['timeouts']['move_around']['min'],
-          'max': dict['repairing']['timeouts']['move_around']['max']
         }
       }
     },
@@ -198,12 +189,4 @@ def save_data():
         dump(d, yaml_file, sort_keys=False)
 
 def random_timeout(key):
-    upper_limit = key['max']
-    lower_limit = key['min']
-
-    loc = (upper_limit + lower_limit) / 2
-    scale = (upper_limit - lower_limit) / 4
-
-    sample = random.normal(loc, scale)
-
-    return round(min(max(sample, lower_limit), upper_limit),2)
+    return round(random.uniform(key['min'], key['max']),2)

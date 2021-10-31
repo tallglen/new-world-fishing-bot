@@ -46,6 +46,7 @@ def call_appropriate_fishing_action():
         reel_fish()
         return '2'
     elif result_from_model == '3': #3 - model matched the orange icon (wait x sec)
+        info("Orange color spotted, Pause fishing")
         if(gv.last_results.are_too_much_pauses()):
             info("Too much pauses, Reeling a fish!")
             reel_fish()
@@ -57,11 +58,11 @@ def call_appropriate_fishing_action():
         info("Red color spotted, Pause fishing")
         pause()
         return '4'
-    elif result_from_model == '5': #5 - model did not match anything (left click, wait x sec)
-        info("Cast fishing rod")
-        cast()
-        return '5'
     elif result_from_model == '6': #6 - model matched the success icon (click)
         info("Success state spotted, click to animation cancel")
         press_on_success()
         return '6'
+    elif result_from_model == '7': #5 - model did not match anything (left click, wait x sec)
+        info("Cast fishing rod")
+        cast()
+        return '7'
