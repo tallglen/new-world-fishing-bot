@@ -2,11 +2,10 @@ from utils.config import dict
 from numpy import array
 import cv2 as cv
 from PIL import ImageGrab
-from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED, SUCCESS_NOTICED
+from utils.global_variables import WAITING_FOR_FISH, FISH_NOTICED
 
 NOTHING = cv.imread(WAITING_FOR_FISH)
 NOTICE = cv.imread(FISH_NOTICED)
-SUCCESS = cv.imread(SUCCESS_NOTICED)
 
 REEL_COLOR = dict['colors']['green']
 WAIT_COLOR_BROWN = dict['colors']['brown']
@@ -17,9 +16,6 @@ def image_recognition_result(x, y, width, height):
     region=(x, y, x + width, y + height)
     img = ImageGrab.grab(bbox = region)
     img_cv = cv.cvtColor(array(img), cv.COLOR_RGB2BGR)
-    res = cv.matchTemplate(img_cv, SUCCESS, eval('cv.TM_CCOEFF_NORMED'))
-    if((res >= 0.7).any()):
-        return '6'
     res = cv.matchTemplate(img_cv, NOTICE, eval('cv.TM_CCOEFF_NORMED'))
     if((res >= 0.7).any()):
         return '1'
