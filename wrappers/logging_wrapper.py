@@ -1,11 +1,12 @@
 import logging
 from utils.config import dict
+from datetime import datetime
 
 log_level = {'DEBUG': logging.DEBUG,
              'INFO': logging.INFO,
             }
 
-file_handler = logging.FileHandler(filename='serve.log')
+file_handler = logging.FileHandler('{:%Y-%m-%d}.log'.format(datetime.now()))
 stdout_handler = logging.StreamHandler()
 handlers = [ file_handler, stdout_handler ]
 

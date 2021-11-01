@@ -1,3 +1,4 @@
+import utils.global_variables as gv
 from utils.config import dict, random_timeout
 from time import sleep
 from wrappers.win32api_wrapper import *
@@ -22,7 +23,12 @@ def pause():
     debug("Pause for: {} s".format(pause_timeout))
     sleep(pause_timeout)
 
-def cast():
+def cast(last_state):
+    if last_state:
+        sleep(0.1)
+        click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
+        sleep(0.1)
+        gv.reset_state = not gv.reset_state
     cast_timeout = random_timeout(dict['fishing']['timeouts']['cast'])
     debug("Pause for: 6 s")
     sleep(6)
@@ -131,8 +137,3 @@ def press_equip_bait(timeout):
     sleep(timeout)
     # waiting for animation to finish
     sleep(1)
-    
-def press_on_success():
-    sleep(0.1)
-    click_mouse_with_coordinates(dict['repairing']['x'].get(), dict['repairing']['y'].get())
-    sleep(0.1)    

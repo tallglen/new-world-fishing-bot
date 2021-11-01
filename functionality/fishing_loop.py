@@ -17,8 +17,10 @@ def fishing_loop():
             debug("Repair in: " + str(should_repair_in))
             if(should_repair_in < 0):
                 gv.last_repair_time = int(time())
+                gv.reset_state = False
                 info("Repairing")
                 repairing()
+                last_state = 1;
                 if dict['bait']['enable'].get():
                     info("Selecting bait")
                     select_bait()
@@ -40,6 +42,7 @@ def call_appropriate_fishing_action():
     elif result_from_model == '1': # 1 - model noticed a fish(left click to initiate fishing)
         info("Found a fish!")
         fish_notice()
+        gv.reset_state = True
         return '1'
     elif result_from_model == '2': #2 - model matched the green icon (reeling a fish in)
         info("Green color spotted, Reeling a fish")
@@ -59,9 +62,5 @@ def call_appropriate_fishing_action():
         return '4'
     elif result_from_model == '5': #5 - model did not match anything (left click, wait x sec)
         info("Cast fishing rod")
-        cast()
+        cast(gv.reset_state)
         return '5'
-    elif result_from_model == '6': #6 - model matched the success icon (click)
-        info("Success state spotted, click to animation cancel")
-        press_on_success()
-        return '6'
